@@ -10,6 +10,7 @@ public class DFAStateMachine : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
+				
 				// ... add public include paths required here ...
 			}
 			);
@@ -18,6 +19,7 @@ public class DFAStateMachine : ModuleRules
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				// ... add other private include paths required here ...
+				"DFAStateMachine"
 			}
 			);
 			
@@ -36,8 +38,7 @@ public class DFAStateMachine : ModuleRules
 			{
 				"CoreUObject",
 				"Engine",
-				"Slate",
-				"SlateCore",
+				"GameplayTags"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
