@@ -18,9 +18,13 @@ class UStateMachine : public UActorComponent
 
 public:
 	UStateMachine();
-
+    
+    /*Will Run machine starting in 'StartState'*/
 	UFUNCTION(BlueprintCallable, Category=StateMachine)
 	bool Run();
+	
+	UFUNCTION(BlueprintCallable, Category=StateMachine)
+    const FGameplayTag& GetCurrentStateTag() const{ return CurrentStateTag; };
 
 	UFUNCTION(BlueprintCallable, Category=StateMachine)
 	bool Transition(const FGameplayTag& TransitionSymbol);
@@ -40,7 +44,7 @@ private:
 	
 	const FStateInformation* CurrentStateInfoPtr = nullptr;
 
-	FGameplayTag CurrentStateID;
+	FGameplayTag CurrentStateTag;
 	
 	//Pointer to Data to pass to active state on 'entry()' and 'exit()' function calls
 	UPROPERTY()

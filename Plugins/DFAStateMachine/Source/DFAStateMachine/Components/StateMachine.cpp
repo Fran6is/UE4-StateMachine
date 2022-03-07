@@ -26,7 +26,7 @@ bool UStateMachine::Run()
 			
 			bIsRunning   = true;
 			CurrentStateInfoPtr = StateInfoPtr;
-			CurrentStateID = StartState;
+			CurrentStateTag = StartState;
 
 			if(OnChangedStates.IsBound())
 			{
@@ -81,10 +81,10 @@ bool UStateMachine::Transition(const FGameplayTag& TransitionSymbol)
 			
 			if(OnChangedStates.IsBound())
 			{
-				OnChangedStates.Broadcast(CurrentStateID, *NextStateIDPtr);
+				OnChangedStates.Broadcast(CurrentStateTag, *NextStateIDPtr);
 			}
 			
-			CurrentStateID      = *NextStateIDPtr;
+			CurrentStateTag      = *NextStateIDPtr;
 			CurrentStateInfoPtr =  NextStateInfoPtr;
 			
 			return true;
@@ -93,12 +93,12 @@ bool UStateMachine::Transition(const FGameplayTag& TransitionSymbol)
 		if(!NextStateInfoPtr)
 		{
 			UE_LOG(LogTemp, Error, TEXT("UStateMachine::Transition couldn't transition from '%s' to some next state because next state (map) item is null for some reason"),
-			*CurrentStateID.ToString() )
+			*CurrentStateTag.ToString() )
 		}
 		else if (!NextStateInfoPtr->State)
 		{
 			UE_LOG(LogTemp, Error, TEXT("UStateMachine::Transition couldn't transition from current '%s' to next state '%s' because no object was created for next state. Either a null class was supplied in the editor or unreal couldn't create state object (for whatever reason)"),
-			*CurrentStateID.ToString(),
+			*CurrentStateTag.ToString(),
 			*NextStateIDPtr->ToString() )
 		}
 		
@@ -106,7 +106,7 @@ bool UStateMachine::Transition(const FGameplayTag& TransitionSymbol)
 	}
 	
 	UE_LOG(LogTemp, Error, TEXT("UStateMachine::Transition Passed in transition symbol '%s' doesn't exist for current state '%s'"),
-		*TransitionSymbol.ToString(), *CurrentStateID.ToString())
+		*TransitionSymbol.ToString(), *CurrentStateTag.ToString())
 	
 	return false;
 }
