@@ -1,5 +1,5 @@
 # Implementation of a Deterministic Finite State Automata(DFA)
-The idea is to be able to setup a State machine in the editor using GameplayTags and some base classes. Then Run the machine and pass in the appropriate input and it (the machine) will switch to some next state (according to your transition setup). In this demo, we'll be implementing a simple AI chase routine to *randomly roam* or *chase player* (based on an AI Perception component update).
+The objective is to be able to setup a State machine in the editor using GameplayTags and some base classes. Then Run the machine and pass in the appropriate input and it (the machine) will switch to some next state (according to your transition setup). In this demo, we'll be implementing a simple AI chase routine to *randomly roam* or *chase player* based on the update from an *AI Perception component*.
  
  <hr>
 
